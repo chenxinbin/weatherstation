@@ -25,7 +25,17 @@
           <img class="num" src="../assets/thermometer.png" />
           </div>
         </div>
-      <div style="text-align:center; color:#D3D8DC;;width:100vw; margin-top:20px ">
+      <div style="display:block;position: relative;overflow: hidden;">
+        <div class="grid-center">湿度<br /><span style="color:white">{{ meter.third_meter.humidity }}%</span></div>
+        <div class="grid-center">气压<br /><span style="color:white">{{ meter.third_meter.atmosphere }}hPa</span></div>
+        <div class="grid-center">风向<br /><span style="color:white">{{ meter.third_meter.winddirection2 }}</span></div>
+        <div class="grid-center">风速<br /><span style="color:white">{{ meter.third_meter.windspeed }}m/s</span></div>
+        <div class="grid-center">日出<br /><span style="color:white">{{ meter.sunrise }}</span></div>
+        <div class="grid-center">日落<br /><span style="color:white">{{ meter.sunset }}</span></div>
+        <div class="grid-center">月出<br /><span style="color:white">{{ meter.moonrise }}</span></div>
+        <div class="grid-center">月落<br /><span style="color:white">{{ meter.moonset }}</span></div>
+      </div>
+      <div style="text-align:center; color:#46637D;;width:100vw; margin-top:10px;font-size:.9rem ">
         {{ meter.last_update2 }} 更新
       </div>
     </div>
@@ -42,13 +52,6 @@
         @click.native="toggleChart" class="custom-primary-red" style="background-color:#fff; width:80vw">打开最近气温变化图</x-button>
       </div>
     </div>
-    <!--
-    <div style="height:50vh;position: relative;">
-      <div style="position: absolute;  top: 50%; left: 50%;  transform: translate(-50%,-50%);">
-        <x-button plain type="primary" class="custom-primary-red" style="background-color:#fff; width:80vw">打开最近气温变化图</x-button>
-      </div>
-    </div>
-    -->
 
     <div v-transfer-dom>
       <popup v-model="show13" position="bottom" max-height="50%">
@@ -73,7 +76,7 @@
 </template>
 
 <script>
-import { XHeader, XButton, XSwitch, TransferDom, ButtonTab, ButtonTabItem,Popup, Group, Cell } from 'vux'
+import { XHeader, XButton, XSwitch, TransferDom, ButtonTab, ButtonTabItem,Popup, Group, Cell,Grid, GridItem } from 'vux'
 import LineChart from '@/components/LineChart'
 
 export default {
@@ -81,7 +84,7 @@ export default {
     TransferDom
   },
   components: {
-    LineChart, XHeader, XButton, ButtonTab, XSwitch, ButtonTabItem,Popup, Group, Cell
+    LineChart, XHeader, XButton, ButtonTab, XSwitch, ButtonTabItem,Popup, Group, Cell,Grid, GridItem
   },
   data () {
     return {
@@ -178,6 +181,15 @@ export default {
   }
 }
 
+.grid-center {
+      float: left;
+      position: relative;
+    padding: 10px 0 10px 0;
+    width:25%;  
+  display: block;
+  text-align: center;
+  color: #666;
+}
 body{
   background-color: #304457;
 }
@@ -186,4 +198,5 @@ body{
 }
 .num {width: 16vw;vertical-align:bottom;}
 .dot {width: 4vw;vertical-align:bottom;}
+
 </style>

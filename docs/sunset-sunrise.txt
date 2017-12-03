@@ -1,0 +1,54 @@
+Just for those that are as stupid as me
+for the settings in php.ini and sunrise/sunset after googling for a while if found this info
+
+;`Zenith' is the angle that the centre of the Sun makes to a line perpendicular to the Earth's surface. 
+;
+; The best Overall figure for zenith is 90+(50/60) degrees for true sunrise/sunset
+; Civil twilight 96 degrees - Conventionally used to signify twilight
+; Nautical twilight 102 degrees - the point at which the horizon stops being visible at sea.
+; Astronical twilight at 108 degrees - the point when Sun stops being a source of any illumination.
+;
+;date.sunrise_zenith = 90.583333  85.4
+;date.sunset_zenith = 90.583333   85.4
+
+
+
+<?php
+
+// De Bilt, The Netherlands, weather station #06260
+$lat = 52.10;    // North
+$long = 5.18;    // East
+$offset = 1;    // difference between GMT and local time in hours
+
+$zenith=90+50/60;
+echo "<br><p>Sunrise: ".date_sunrise(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+echo "<br>Sunset: ".date_sunset(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+
+$zenith=96;
+echo "<br><p>Civilian Twilight start: ".date_sunrise(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+echo "<br>Civilian Twilight end: ".date_sunset(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+
+$zenith=102;
+echo "<br><p>Nautical Twilight start: ".date_sunrise(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+echo "<br>Nautical Twilight end: ".date_sunset(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+
+$zenith=108;
+echo "<br><p>Astronomical Twilight start: ".date_sunrise(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+echo "<br>Astronomical Twilight end: ".date_sunset(time(), SUNFUNCS_RET_STRING, $lat, $long, $zenith, $offset);
+
+?> 
+
+Zenith according to the U.S. Navy's 1990 Almanac for Computers.
+
+Thanks to George King.
+More sources about this topic:
+
+http://www.qarlos.free.fr/navegacion/Sextante/formulas.htm
+http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
+http://www.kevinboone.com/suntimes.html
+http://star-www.st-and.ac.uk/~fv/webnotes/chapt12.htm
+
+
+http://www.kevinboone.com/suntimes.html
+http://solardat.uoregon.edu/index.html
+http://star-www.st-and.ac.uk/~fv/webnotes/answer12.htm
