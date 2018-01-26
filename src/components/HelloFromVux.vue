@@ -14,6 +14,7 @@
 
     <div style="width:100vw; display: table-cell; height:40vh; vertical-align: middle; text-align:center; margin:10px auto;">
         <div style="display:inline;">
+          <img v-if="vv.neg" class="num" src="../assets/neg.png" />
           <img v-if="vv.vten" class="num" :src="vsrc.vten" />
           <img v-if="vv.vone" class="num" :src="vsrc.vone" />
           <img v-if="vv.vdot" class="dot" :src="vsrc.vdot" />
@@ -92,7 +93,7 @@ export default {
       showchart: false,
       datacollection: null,
       meter: {'temperatur':'-', 'last_update2': '-'},
-      vv: {'vten':true, 'vone':true, 'vdot': true, 'vdec': true},
+      vv: {'vten':true, 'vone':true, 'vdot': true, 'vdec': true, 'neg': false},
       vsrc: {'vten':this.STATIC_ROOT + 'temp_0.png', 'vone':this.STATIC_ROOT + 'temp_0.png', 'vdot': this.STATIC_ROOT + 'temp_dot.png', 'vdec': this.STATIC_ROOT + 'temp_0.png'},
     }
   },
@@ -148,6 +149,7 @@ export default {
         if(val1<0)
         {
           //负号显示
+          this.vv.neg = true;
           val1 = -1 * val1;
         }
 
